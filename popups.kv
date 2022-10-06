@@ -1,0 +1,212 @@
+#kivy 2.1.0
+<ModbusPopup>:
+    title:"Suprevisão"
+    size_hint_y: None
+    size_hint_x: 0.4
+    height: 200
+    BoxLayout:
+        id: layout
+        orientation: 'vertical'
+        GridLayout:
+            cols:2
+            rows:2
+            Label:
+                text:"IP"
+                font_size:14
+            TextInput:
+                id: txt_ip
+                text:'127.0.0.1'
+                font_size: 14
+                halign: 'center'
+                valign:'middle'
+            Label:
+                text:"Porta"
+                font_size: 14
+            TextInput:
+                id: txt_porta
+                text:'502'
+                font_size:14
+                halign: 'center'
+                valign:'middle'
+        BoxLayout:
+            orientation:'horizontal'
+            Button:
+                size_hint_y: None
+                height:40
+                text:"conectar"
+                on_release:
+                    root.clearInfo()
+                    app.root.startDataRead(txt_ip.text, int(txt_porta.text))
+            Button:
+                size_hint_y: None
+                height:40
+                text:"Fechar"
+                on_release:
+                    root.dismiss()
+                    root.clearInfo()
+<ScanPopup>
+    title:"Dados da MR"
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: 1,1,1
+            Rectangle:
+                size: self.size
+        Image:
+            source: 'img\MR.png'
+        Label:
+            id: geracao_foto
+            text:'-.-'
+            font_size: 25
+            bold: True
+            halign:'center'
+            pos_hint:{'x': -0.43,'y': 0.08}
+            color: 0 , 0 , 0 , 1
+        Label:
+            id: banco_de_baterias
+            text:'-.-'
+            font_size: 25
+            bold: True
+            halign:'center'
+            pos_hint:{'x': -0.45,'y': -0.1}
+            color: 0 , 0 , 0 , 1
+        Label:
+            id: estacao_de_carga_rapida
+            text:'-.-'
+            font_size: 25
+            bold: True
+            halign:'center'
+            pos_hint:{'x': -0.45,'y': -0.3}
+            color: 0 , 0 , 0 , 1
+        Label:
+            id: conversor_1
+            text:'-.-'
+            font_size: 25
+            bold: True
+            halign:'center'
+            pos_hint:{'x': -0.3,'y': 0.08}
+            color: 0 , 0 , 0 , 1
+        Label:
+            id: conversor_2
+            text:'-.-'
+            font_size: 25
+            bold: True
+            halign:'center'
+            pos_hint:{'x': -0.3,'y': -0.10}
+            color: 0 , 0 , 0 , 1
+        Label:
+            id: conversor_3
+            text:'-.-'
+            font_size: 25
+            bold: True
+            halign:'center'
+            pos_hint:{'x': -0.3,'y': -0.3}
+            color: 0 , 0 , 0 , 1
+        Label:
+            id: geracao_foto
+            text:'-.-'
+            font_size: 25
+            bold: True
+            halign:'center'
+            pos_hint:{'x': -0.04,'y': -0.10}
+            color: 0 , 0 , 0 , 1
+        Label:
+            id: estacao_de_carga_lenta
+            text:'-.-'
+            font_size: 25
+            bold: True
+            halign:'center'
+            pos_hint:{'x': -0.04,'y': -0.27}
+            color: 0 , 0 , 0 , 1
+        Label:
+            id: conversor_4
+            text:'-.-'
+            font_size: 25
+            bold: True
+            halign:'center'
+            pos_hint:{'x': 0.1,'y': 0.27}
+            color: 0 , 0 , 0 , 1
+        Label:
+            id: cargas_prioritarias
+            text:'-.-'
+            font_size: 25
+            bold: True
+            halign:'center'
+            pos_hint:{'x': 0.1,'y': 0.09}
+            color: 0 , 0 , 0 , 1
+        Label:
+            id: conversor_sma
+            text:'-.-'
+            font_size: 25
+            bold: True
+            halign:'center'
+            pos_hint:{'x': 0.1,'y': -0.1}
+            color: 0 , 0 , 0 , 1
+        Label:
+            id: rede_eletrica
+            text:'-.-'
+            font_size: 25
+            bold: True
+            halign:'center'
+            pos_hint:{'x': 0.45,'y': 0.27}
+            color: 0 , 0 , 0 , 1
+        Label:
+            id: cargas_nao_prioritarias
+            text:'-.-'
+            font_size: 25
+            bold: True
+            halign:'center'
+            pos_hint:{'x': 0.4,'y': 0}
+            color: 0 , 0 , 0 , 1
+            BoxLayout:
+                id: layout
+                orientation: 'horizontal'
+                height: 40
+                GridLayout:
+                    cols:2
+                    rows:1
+                    Label:
+                        text:"ScanTime [ms]"
+                        font_size:14
+                    TextInput:
+                        id: txt_st
+                        font_size:14
+                        halign: 'center'
+                        valign:'middle'
+                    BoxLayout:
+                        orientation:'horizontal'
+                        Button:
+                            height:20
+                            text:"Dados "
+                            on_release:
+                                app.root._scan_time = int(txt_st.text)
+                                print(app.root._scan_time)
+                        Button:
+                            text:"Fechar"
+                            on_release:
+                                root.dismiss()
+<RegPopup>
+    title:"registros"
+    size_hint_y: None
+    size_hint_x: 0.4
+    height: 150
+    BoxLayout:
+        id: layout
+        orientation: 'vertical'
+        GridLayout:
+            cols:2
+            rows:1
+            Label:
+                text:"Registro "
+                font_size:14
+            TextInput:
+                id: txt_st
+                font_size:14
+                halign: 'center'
+                valign:'middle'
+        BoxLayout:
+            Button:
+                heigt:40
+                text:"Fechar"
+                on_release:
+                    root.dismiss()

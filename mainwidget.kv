@@ -1,0 +1,82 @@
+#kivy 2.1.0
+
+<MainWidget>:
+    orientation: 'vertical'
+    canvas:
+        Color:
+            rgb: 0.5,0.5,0.5
+        Rectangle:
+            size: self.size
+    BoxLayout:
+        orientation:'horizontal'
+        size_hint: (1,0.1)
+        spacing: 10
+        Label:
+            text: 'LAB Solar UFJF'
+            width: 100
+        BoxLayout:
+            orientation: 'vertical'
+            width:400
+            Label:
+                text:'Dados da MR'
+            BoxLayout:
+                orientation:'horizontal'
+                Button:
+                    text:'Supervisão'
+                    on_release: root._modbusPopup.open()
+                Button:
+                    text:'Dados da MR'
+                    on_release: root._scanPopup.open()
+                Button:
+                    text:'Registro de Eventos'
+                    on_release: root._regPopup.open()
+
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: 1,1,1
+            Rectangle:
+                size: self.size
+        Image:
+            source: "img/tela_inicial.png"
+        
+        Label:
+            id: potencaia_fv_atual
+            text:'-.-'
+            font_size: 25
+            bold: True
+            halign:'center'
+            pos_hint:{'x': -0.35,'y': 0.28}
+            color: 0 , 0 , 0 , 1
+        TempLabel:
+            id:monitorização_da_comunicacao
+            pos_hint:{'x': -0,'y': 0.28}
+        TempLabel:
+            id:estado_comparacao_de_inversores
+            pos_hint:{'x': 0.35,'y': 0.28}
+        TempLabel:
+            id:energia_fotovoltaica
+            pos_hint:{'x': -0.35,'y': 0}
+        TempLabel:
+            id:compesacao
+            pos_hint:{'x': 0,'y': 0.}
+        TempLabel:
+            id:reducao_na_emissao_de_CO2
+            pos_hint:{'x': 0.35,'y': 0}
+        TempLabel:
+            id:info_sobre_o_sistema
+            pos_hint:{'x': -0.35,'y': -0.28}
+        TempLabel:
+            id:info_clima
+            pos_hint:{'x': 0,'y': -0.28}
+        TempLabel:
+            id:local
+            pos_hint:{'x': 0.35,'y': -0.28}
+
+<TempLabel@Label>:
+    text:'-.-'
+    font_size: 20
+    bold: True
+    halign:'center'
+    color: 0 , 0 , 0 , 1
+
